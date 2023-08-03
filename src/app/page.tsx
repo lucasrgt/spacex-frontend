@@ -1,3 +1,4 @@
+import LaunchRegisters from '@/components/features/launch-registers/organisms/launch-registers'
 import LaunchResults from '@/components/features/launch-results/organisms/launch-results'
 import RocketLaunches from '@/components/features/rocket-launches/organisms/rocket-launches'
 import YearLaunches from '@/components/features/year-launches/organisms/year-launch-bars'
@@ -14,6 +15,7 @@ export default function Home() {
       <RocketLaunches />
       <SectionSeparator />
       <YearLaunches />
+      <LaunchRegisters />
     </main>
   )
 }

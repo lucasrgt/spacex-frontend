@@ -11,6 +11,9 @@ export const options: ChartOptions = {
     tooltip: {
       enabled: true,
       position: 'nearest'
+    },
+    legend: {
+      display: false
     }
   },
   scales: {

@@ -13,17 +13,19 @@ const RocketLaunches = () => {
       {
         label: 'Users Gained',
         data: RocketLaunchData.map((data) => data.userGain),
-        backgroundColor: ['#7AE7FF', '#8D7AFF', '#FFD27A']
+        backgroundColor: ['#7AE7FF', '#8D7AFF', '#99F3FF']
       }
     ],
-    type: 'bar'
+    type: 'pie'
   })
 
   return (
     <SectionBox>
       <Title text="LANÇAMENTOS DE FOGUETES" />
       <Separator />
-      <PieChart chartData={chartData} />
+      <div className="w-full h-full lg:w-3/4 p-4">
+        <PieChart className="h-full w-full" chartData={chartData} />
+      </div>
     </SectionBox>
   )
 }
