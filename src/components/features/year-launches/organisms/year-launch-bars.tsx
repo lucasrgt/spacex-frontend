@@ -37,7 +37,7 @@ const YearLaunches = () => {
     <SectionBox className="w-full">
       <Title text="LANÇAMENTOS POR ANO" />
       <Separator />
-      <div className="w-full h-full lg:w-3/4 p-4">
+      <div className="w-full h-full lg:w-3/4 p-4 flex justify-center">
         <BarChart className="h-full w-full" chartData={chartData} />
       </div>
     </SectionBox>

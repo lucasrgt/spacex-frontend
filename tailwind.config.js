@@ -13,7 +13,8 @@ module.exports = {
         'spaceblue-500': '#99F3FF'
       },
       boxShadow: {
-        spacex: '0 12px 0px'
+        'spacex': '0 12px 0px',
+        'spacex-sm': '0 8px 0px'
       }
     }
   },

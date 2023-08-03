@@ -23,7 +23,7 @@ const RocketLaunches = () => {
     <SectionBox>
       <Title text="LANÇAMENTOS DE FOGUETES" />
       <Separator />
-      <div className="w-full h-full lg:w-3/4 p-4">
+      <div className="w-full h-full lg:w-2/5 p-4 flex justify-center">
         <PieChart className="h-full w-full" chartData={chartData} />
       </div>
     </SectionBox>
