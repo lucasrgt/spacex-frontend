@@ -9,7 +9,7 @@ const Separator = ({ className }: SeparatorProps) => {
 
   return (
     <div
-      className={`${extraClasses} h-[1px] w-16 my-4  bg-spaceblue-500`}
+      className={`${extraClasses} h-[1px] w-16 my-4 mb-6 bg-spaceblue-500`}
     ></div>
   )
 }

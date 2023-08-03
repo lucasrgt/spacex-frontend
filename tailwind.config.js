@@ -11,6 +11,9 @@ module.exports = {
         'spacegray-500': '#334155',
         'spacegray-600': '#020617',
         'spaceblue-500': '#99F3FF'
+      },
+      boxShadow: {
+        spacex: '0 12px 0px'
       }
     }
   },
