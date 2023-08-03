@@ -11,7 +11,7 @@ const SearchForm = () => {
           placeholder="PROCURAR"
         />
         <button>
-          <MdSearch class="fill-spaceblue-500" size="20" />
+          <MdSearch className="fill-spaceblue-500" size="20" />
         </button>
       </label>
     </form>
