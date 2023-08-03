@@ -2,7 +2,8 @@ import { ChartOptions } from 'chart.js/auto'
 
 const fontOptions = {
   family: 'JetBrains Mono',
-  size: 12
+  size: 12,
+  color: '#ffffff'
 }
 
 export const options: ChartOptions = {
@@ -11,32 +12,19 @@ export const options: ChartOptions = {
     tooltip: {
       enabled: true,
       position: 'nearest'
+    },
+    legend: {
+      labels: {
+        font: fontOptions,
+        color: fontOptions.color,
+        padding: 32
+      },
+      position: 'bottom'
     }
   },
-  scales: {
-    x: {
-      type: 'category',
-      stacked: true,
-      grid: {
-        display: false
-      },
-      ticks: {
-        color: '#99F3FF',
-        padding: 8,
-        font: fontOptions
-      }
-    },
-    y: {
-      type: 'linear',
-      stacked: true,
-      grid: {
-        display: false
-      },
-      ticks: {
-        color: '#99F3FF',
-        padding: 8,
-        font: fontOptions
-      }
+  elements: {
+    arc: {
+      borderWidth: 0
     }
   }
 }

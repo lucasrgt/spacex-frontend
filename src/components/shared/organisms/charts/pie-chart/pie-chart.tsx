@@ -1,19 +1,13 @@
 'use client'
-import {
-  BarElement,
-  CategoryScale,
-  Chart,
-  LinearScale,
-  Tooltip
-} from 'chart.js'
-import { Bar } from 'react-chartjs-2'
+import { ArcElement, Chart, Legend, Tooltip } from 'chart.js'
+import { Pie } from 'react-chartjs-2'
 import { options } from './chart-options'
 
-Chart.register(CategoryScale, LinearScale, BarElement, Tooltip)
+Chart.register(Legend, ArcElement, Tooltip)
 
-const BarChart = ({ chartData }: any) => {
+const PieChart = ({ chartData }: any) => {
   // @ts-ignore
-  return <Bar options={options} data={chartData} />
+  return <Pie options={options} data={chartData} />
 }
 
-export default BarChart
+export default PieChart
