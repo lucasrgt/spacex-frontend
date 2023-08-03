@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client'
 import {
   BarElement,
@@ -13,6 +12,7 @@ import { options } from './chart-options'
 Chart.register(CategoryScale, LinearScale, BarElement, Tooltip)
 
 const BarChart = ({ chartData }: any) => {
+  // @ts-ignore
   return <Bar options={options} data={chartData} />
 }
 
