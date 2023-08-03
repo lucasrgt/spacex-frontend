@@ -1,15 +1,16 @@
-import SectionSeparator from '@/components/atoms/ui-components/section-separator'
-import LaunchBars from '@/components/organisms/launch-bars/launch-bars'
-import LaunchResults from '@/components/organisms/launch-results/launch-results'
-import Header from '@/components/organisms/ui-components/header'
+import LaunchResults from '@/components/features/launch-results/organisms/launch-results'
+import YearLaunches from '@/components/features/year-launches/organisms/year-launch-bars/year-launch-bars'
+import SectionSeparator from '@/components/shared/atoms/ui-components/section-separator'
+import Header from '@/components/shared/organisms/ui-components/header'
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-gradient-to-tl from-spacegray-500 to-spacegray-600 min-h-screen h-full">
       <Header />
       <LaunchResults />
       <SectionSeparator />
-      <LaunchBars />
+      <YearLaunches />
+      <SectionSeparator />
     </main>
   )
 }

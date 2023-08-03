@@ -1,5 +1,10 @@
 import { ChartOptions } from 'chart.js/auto'
 
+const fontOptions = {
+  family: 'JetBrains Mono',
+  size: 12
+}
+
 export const options: ChartOptions = {
   responsive: true,
   plugins: {
@@ -18,10 +23,7 @@ export const options: ChartOptions = {
       ticks: {
         color: '#99F3FF',
         padding: 8,
-        font: {
-          family: 'monospace',
-          size: 12
-        }
+        font: fontOptions
       }
     },
     y: {
@@ -33,10 +35,7 @@ export const options: ChartOptions = {
       ticks: {
         color: '#99F3FF',
         padding: 8,
-        font: {
-          family: 'monospace',
-          size: 12
-        }
+        font: fontOptions
       }
     }
   }

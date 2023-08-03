@@ -1,13 +1,13 @@
 'use client'
-import Title from '@/components/atoms/text/title'
-import SectionBox from '@/components/atoms/ui-components/section-box'
-import Separator from '@/components/atoms/ui-components/separator'
-import { useState } from 'react'
 
-import BarChart from '../charts/bar-chart/bar-chart'
+import Title from '@/components/shared/atoms/text/title'
+import SectionBox from '@/components/shared/atoms/ui-components/section-box'
+import Separator from '@/components/shared/atoms/ui-components/separator'
+import BarChart from '@/components/shared/organisms/charts/bar-chart/bar-chart'
+import { useState } from 'react'
 import { LaunchData } from './data'
 
-const LaunchBars = () => {
+const YearLaunches = () => {
   const [chartData, setChartData] = useState({
     labels: LaunchData.map((data) => data.year),
     datasets: [
@@ -44,4 +44,4 @@ const LaunchBars = () => {
   )
 }
 
-export default LaunchBars
+export default YearLaunches

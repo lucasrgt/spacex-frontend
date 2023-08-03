@@ -16,11 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${jetbrainsMono.className} bg-gradient-to-tl from-spacegray-500 to-spacegray-600`}
-      >
-        {children}
-      </body>
+      <body className={`${jetbrainsMono.className}`}>{children}</body>
     </html>
   )
 }
