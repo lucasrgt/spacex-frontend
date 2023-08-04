@@ -1,8 +1,12 @@
-export interface LaunchChartData {
-  id: string
-  cores: Core[]
-  date_utc: string
-  rocket: string
+import { Launch } from './launch'
+
+export interface PaginatedLaunches {
+  results: Launch[]
+  totalDocs: number
+  page: number
+  totalPages: number
+  hasNext: boolean
+  hasPrev: boolean
 }
 
 interface Core {

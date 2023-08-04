@@ -1,29 +1,29 @@
 'use client'
-import { FindAllLaunchesController } from '@/application/controllers/launch/find-launch-controller'
+import { FindLaunchChartDataController } from '@/application/controllers/launch/find-launch-chart-data-controller'
 import Title from '@/components/shared/atoms/text/title'
 import SectionBox from '@/components/shared/atoms/ui-components/section-box'
 import Separator from '@/components/shared/atoms/ui-components/separator'
 import PieChart from '@/components/shared/organisms/charts/pie-chart/pie-chart'
-import { Launch } from '@/domain/models/launch'
+import { LaunchChartData } from '@/domain/models/launch-chart-data'
 import { useEffect, useState } from 'react'
 import { container } from 'tsyringe'
 
 const RocketLaunches = () => {
-  const [chartLaunches, setChartLaunches] = useState<Launch[]>([])
+  const [chartLaunches, setChartLaunches] = useState<LaunchChartData[]>([])
   const [chartData, setChartData] = useState<any>(null)
 
   const fetchLaunches = async () => {
-    const launches = await container.resolve(FindAllLaunchesController).handle()
-    if (typeof launches === 'string' || launches == null) {
+    const data = await container.resolve(FindLaunchChartDataController).handle()
+    if (typeof data === 'string' || data == null) {
       setChartLaunches([])
       return
     }
-    setChartLaunches(launches)
+    setChartLaunches(data)
 
     const rocketCount: Record<string, number> = {}
-    launches.forEach((launch: Launch) => {
-      const usedRocket = launch.cores.some((core) => core.reused)
-      const rocketType = `${usedRocket ? 'Used' : 'New'} ${launch.rocket}`
+    data.forEach((d: LaunchChartData) => {
+      const usedRocket = d.cores.some((core) => core.reused)
+      const rocketType = `${usedRocket ? 'Used' : 'New'} ${d.rocket}`
       rocketCount[rocketType] = (rocketCount[rocketType] || 0) + 1
     })
 

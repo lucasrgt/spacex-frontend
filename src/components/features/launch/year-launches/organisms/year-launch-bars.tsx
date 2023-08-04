@@ -1,10 +1,10 @@
 'use client'
-import { FindAllLaunchesController } from '@/application/controllers/launch/find-launch-controller'
+import { FindLaunchChartDataController } from '@/application/controllers/launch/find-launch-chart-data-controller'
 import Title from '@/components/shared/atoms/text/title'
 import SectionBox from '@/components/shared/atoms/ui-components/section-box'
 import Separator from '@/components/shared/atoms/ui-components/separator'
 import BarChart from '@/components/shared/organisms/charts/bar-chart/bar-chart'
-import { Launch } from '@/domain/models/launch'
+import { LaunchChartData } from '@/domain/models/launch-chart-data'
 import { useEffect, useState } from 'react'
 import { container } from 'tsyringe'
 
@@ -12,29 +12,34 @@ const YearLaunches = () => {
   const [chartData, setChartData] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  const fetchLaunches = async () => {
+  const fetchLaunchChartData = async () => {
     setIsLoading(true)
-    const launches = await container.resolve(FindAllLaunchesController).handle()
+    const data = await container.resolve(FindLaunchChartDataController).handle()
 
-    if (launches && typeof launches !== 'string') {
+    if (data && typeof data !== 'string') {
       const years: Record<string, Record<string, number>> = {}
 
-      launches.forEach((launch: Launch) => {
-        const date = new Date(launch.date_utc)
+      data.forEach((d: LaunchChartData) => {
+        const date = new Date(d.date_utc)
         const year = date.getUTCFullYear().toString()
-        const usedRocket = launch.cores.some((core) => core.reused)
-        const rocket = `${usedRocket ? 'Used' : 'New'} ${launch.rocket}`
+        let rocketType = d.rocket
+
+        if (d.cores.some((core) => core.reused)) {
+          rocketType = 'Used ' + rocketType
+        } else {
+          rocketType = 'New ' + rocketType
+        }
 
         years[year] = years[year] || {}
-        years[year][rocket] = (years[year][rocket] || 0) + 1
+        years[year][rocketType] = (years[year][rocketType] || 0) + 1
       })
 
       const labels = Object.keys(years).sort()
       const rocketTypes = Object.keys(
-        launches.reduce(
+        data.reduce(
           (acc, launch) => {
-            const usedRocket = launch.cores.some((core) => core.reused)
-            acc[`${usedRocket ? 'Used' : 'New'} ${launch.rocket}`] = true
+            acc['Used ' + launch.rocket] = true
+            acc['New ' + launch.rocket] = true
             return acc
           },
           {} as Record<string, boolean>
@@ -61,8 +66,8 @@ const YearLaunches = () => {
   }
 
   useEffect(() => {
-    fetchLaunches()
-    const intervalId = setInterval(fetchLaunches, 60000)
+    fetchLaunchChartData()
+    const intervalId = setInterval(fetchLaunchChartData, 60000)
     return () => clearInterval(intervalId)
   }, [])
 
