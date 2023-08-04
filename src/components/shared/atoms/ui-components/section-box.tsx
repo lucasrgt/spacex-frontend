@@ -10,7 +10,7 @@ const SectionBox = ({ children, className }: SectionBoxProps) => {
 
   return (
     <div
-      className={`${extraClasses} border-y border-spaceblue-500 py-4 flex flex-col items-center`}
+      className={`${extraClasses} w-full border-y border-spaceblue-500 py-4 flex flex-col items-center`}
     >
       {children}
     </div>

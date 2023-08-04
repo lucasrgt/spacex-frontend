@@ -11,9 +11,10 @@ export default function Home() {
       <Header />
       <LaunchResults />
       <SectionSeparator />
-      <RocketLaunches />
-      <SectionSeparator />
-      <YearLaunches />
+      <div className="flex flex-col md:flex-row">
+        <RocketLaunches />
+        <YearLaunches />
+      </div>
       <LaunchRegisters />
     </main>
   )

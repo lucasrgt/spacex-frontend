@@ -47,10 +47,10 @@ const RocketLaunches = () => {
   }, [])
 
   return (
-    <SectionBox>
+    <SectionBox className="md:border-r border-spaceblue-500">
       <Title text="LANÇAMENTOS DE FOGUETES" />
       <Separator />
-      <div className="w-full h-full md:w-1/3 lg:w-2/5 p-4 flex justify-center">
+      <div className="w-full h-full md:w-1/2 p-4 flex justify-center">
         {chartData === null ? (
           <h1 className="text-spaceblue-500">
             Nenhum lançamento foi encontrado
