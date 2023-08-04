@@ -1,12 +1,12 @@
-import { Launch } from '@/domain/models/launch'
+import { PaginatedLaunch } from '@/domain/models/paginated-launch-chart-data'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 /** Fetch launches from backend */
-export const fetchLaunches = createAsyncThunk<Launch[], void>(
+export const fetchLaunches = createAsyncThunk<PaginatedLaunch[], void>(
   'fetchLaunches',
   async () => {
-    const response = await axios.get<Launch[]>(`
+    const response = await axios.get<PaginatedLaunch[]>(`
       http://127.0.0.1:8000/launches`)
     console.log('Data:', response.data)
     return response.data
@@ -16,7 +16,7 @@ export const fetchLaunches = createAsyncThunk<Launch[], void>(
 interface LaunchState {
   isLoading: boolean
   isError: boolean
-  data: Launch[] | null
+  data: PaginatedLaunch[] | null
 }
 
 const initialState: LaunchState = {
@@ -35,7 +35,7 @@ const launchSlice = createSlice({
     })
     builder.addCase(
       fetchLaunches.fulfilled,
-      (state, action: PayloadAction<Launch[]>) => {
+      (state, action: PayloadAction<PaginatedLaunch[]>) => {
         state.isLoading = false
         state.data = action.payload
       }

@@ -1,4 +1,5 @@
-import { Launch } from '@/domain/models/launch'
+import { PaginatedLaunch } from '@/domain/models/paginated-launch-chart-data'
 import { FindRepository } from '../protocols'
 
-export interface FindLaunchesRepository extends FindRepository<Launch> {}
+export interface FindLaunchesRepository
+  extends FindRepository<PaginatedLaunch> {}

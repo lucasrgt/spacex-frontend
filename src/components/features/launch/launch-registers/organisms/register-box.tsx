@@ -1,7 +1,7 @@
 'use client'
 import SectionBox from '@/components/shared/atoms/ui-components/section-box'
 import SectionSeparator from '@/components/shared/atoms/ui-components/section-separator'
-import { Launch } from '@/domain/models/launch'
+import { PaginatedLaunch } from '@/domain/models/paginated-launch-chart-data'
 import classNames from 'classnames'
 import { format, parseISO } from 'date-fns'
 import { VscTriangleRight } from 'react-icons/vsc'
@@ -10,60 +10,60 @@ import Paginator from '../molecules/paginator'
 
 interface RegisterBoxProps {
   className?: string
-  data: Launch[]
+  data: PaginatedLaunch
 }
 
 const RegisterBox = ({ className, data }: RegisterBoxProps) => {
-  const usedRocket = data?.some((launch) =>
-    launch.cores.some((core) => core.reused)
-  )
-
   return (
     <div className="h-full flex flex-col w-full items-center ">
-      {data?.map((launch, index) => (
-        <>
-          <SectionBox
-            key={index}
-            className={`${classNames(
-              className
-            )} !p-0 !m-0 h-full w-full flex flex-col justify-center !items-center`}
-          >
-            {
-              <IdentifierBox
-                className="!h-full !p-0 w-full"
-                isSuccess={launch.success!}
-                logoUrl={
-                  launch.links?.patch?.large ? launch.links?.patch?.large : ''
-                }
-                flightNumber={launch.flight_number}
-              />
-            }
-            <div className="p-4 !h-full w-full flex flex-col items-center text-center border-spaceblue-500">
-              <DataPiece title={'MISSÃO'} data={launch.name} />
-              <DataPiece
-                title={'FOGUETE'}
-                data={
-                  launch.rocket
-                    ? `${usedRocket ? 'New' : 'Used'} ${launch.rocket!}`
-                    : 'Nenhum foguete encontrado'
-                }
-              />
-              <DataPiece
-                title={'DATA'}
-                data={format(parseISO(launch.date_local), 'dd/MM/yyyy')}
-              />
-              {launch.links?.youtube_id ? (
-                <YoutubeButton videoId={launch.links.youtube_id} />
-              ) : null}
-            </div>
-          </SectionBox>
-          <SectionSeparator />
-        </>
-      ))}
+      {data?.results.map((launch, index) => {
+        const usedRocket = launch.cores.some((core) => core.reused)
+
+        return (
+          <>
+            <SectionBox
+              key={index}
+              className={`${classNames(
+                className
+              )} !p-0 !m-0 h-full w-full flex flex-col justify-center !items-center`}
+            >
+              {
+                <IdentifierBox
+                  className="!h-full !p-0 w-full"
+                  isSuccess={launch.success!}
+                  logoUrl={launch.links?.patch?.large || ''}
+                  flightNumber={launch.flight_number}
+                />
+              }
+              <div className="p-4 !h-full w-full flex flex-col items-center text-center border-spaceblue-500">
+                <DataPiece title={'MISSÃO'} data={launch.name} />
+                <DataPiece
+                  title={'FOGUETE'}
+                  data={
+                    launch.rocket
+                      ? `${usedRocket ? 'Used' : 'New'} ${launch.rocket}`
+                      : 'Nenhum foguete encontrado'
+                  }
+                />
+                <DataPiece
+                  title={'DATA'}
+                  data={format(parseISO(launch.date_local), 'dd/MM/yyyy')}
+                />
+                {launch.links?.youtube_id ? (
+                  <YoutubeButton videoId={launch.links.youtube_id} />
+                ) : null}
+              </div>
+            </SectionBox>
+            <SectionSeparator />
+          </>
+        )
+      })}
       <Paginator />
     </div>
   )
 }
+
+// ... O restante do código permanece o mesmo ...
 
 interface DataPieceProps {
   title: string
