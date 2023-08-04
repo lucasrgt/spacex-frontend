@@ -14,6 +14,10 @@ interface RegisterBoxProps {
 }
 
 const RegisterBox = ({ className, data }: RegisterBoxProps) => {
+  const usedRocket = data?.map((launch) =>
+    launch.cores.map((core) => core.reused)
+  )
+
   return (
     <div className="h-full flex flex-col w-full items-center ">
       {data?.map((launch, index) => (
@@ -32,7 +36,14 @@ const RegisterBox = ({ className, data }: RegisterBoxProps) => {
             />
             <div className="p-4 !h-full w-full flex flex-col items-center text-center border-spaceblue-500">
               <DataPiece title={'MISSÃO'} data={launch.name} />
-              <DataPiece title={'FOGUETE'} data={launch.rocket!} />
+              <DataPiece
+                title={'FOGUETE'}
+                data={
+                  launch.rocket
+                    ? `${usedRocket ? 'New' : 'Used'} ${launch.rocket!}`
+                    : 'Nenhum foguete encontrado'
+                }
+              />
               <DataPiece
                 title={'DATA'}
                 data={format(parseISO(launch.date_local), 'dd/MM/yyyy')}

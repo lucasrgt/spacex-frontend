@@ -1,8 +1,7 @@
-import LaunchRegisters from '@/components/features/launch-registers/organisms/launch-registers'
-import LaunchResults from '@/components/features/launch-results/organisms/launch-results'
-import RocketLaunches from '@/components/features/rocket-launches/organisms/rocket-launches'
+import LaunchRegisters from '@/components/features/launch/launch-registers/organisms/launch-registers'
+import LaunchResults from '@/components/features/launch/launch-results/organisms/launch-results'
+import RocketLaunches from '@/components/features/launch/rocket-launches/organisms/rocket-launches'
 import YearLaunches from '@/components/features/year-launches/organisms/year-launch-bars'
-
 import SectionSeparator from '@/components/shared/atoms/ui-components/section-separator'
 import Header from '@/components/shared/organisms/ui-components/header'
 
