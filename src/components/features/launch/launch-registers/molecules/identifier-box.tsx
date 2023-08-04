@@ -31,13 +31,16 @@ const IdentifierBox = ({
         )}
       </div>
       <div className="flex flex-col justify-center !self-center items-center flex-grow p-4">
-        <img
-          src={logoUrl}
-          alt={'Logo'}
-          height={32}
-          width={32}
-          className="mb-4"
-        />
+        {logoUrl ? (
+          <img
+            src={logoUrl}
+            alt={'Logo'}
+            height={32}
+            width={32}
+            className="mb-4"
+          />
+        ) : null}
+
         <h1 className="text-spaceblue-500 text-2xl">{flightNumber}</h1>
       </div>
     </div>

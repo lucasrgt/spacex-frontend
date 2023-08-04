@@ -14,8 +14,8 @@ interface RegisterBoxProps {
 }
 
 const RegisterBox = ({ className, data }: RegisterBoxProps) => {
-  const usedRocket = data?.map((launch) =>
-    launch.cores.map((core) => core.reused)
+  const usedRocket = data?.some((launch) =>
+    launch.cores.some((core) => core.reused)
   )
 
   return (
@@ -28,12 +28,16 @@ const RegisterBox = ({ className, data }: RegisterBoxProps) => {
               className
             )} !p-0 !m-0 h-full w-full flex flex-col justify-center !items-center`}
           >
-            <IdentifierBox
-              className="!h-full !p-0 w-full"
-              isSuccess={launch.success!}
-              logoUrl={launch.links.patch.large!}
-              flightNumber={launch.flight_number}
-            />
+            {
+              <IdentifierBox
+                className="!h-full !p-0 w-full"
+                isSuccess={launch.success!}
+                logoUrl={
+                  launch.links?.patch?.large ? launch.links?.patch?.large : ''
+                }
+                flightNumber={launch.flight_number}
+              />
+            }
             <div className="p-4 !h-full w-full flex flex-col items-center text-center border-spaceblue-500">
               <DataPiece title={'MISSÃO'} data={launch.name} />
               <DataPiece
@@ -48,7 +52,9 @@ const RegisterBox = ({ className, data }: RegisterBoxProps) => {
                 title={'DATA'}
                 data={format(parseISO(launch.date_local), 'dd/MM/yyyy')}
               />
-              <YoutubeButton videoId={launch.links.youtube_id!} />
+              {launch.links?.youtube_id ? (
+                <YoutubeButton videoId={launch.links.youtube_id} />
+              ) : null}
             </div>
           </SectionBox>
           <SectionSeparator />

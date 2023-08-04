@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
+import launchChartDataReducer from '../slice/chart-data-slice'
 import launchReducer from '../slice/launch-slice'
 
 export const store = configureStore({
   reducer: {
-    launchReducer
+    launchReducer,
+    launchChartDataReducer
   }
 })
 
