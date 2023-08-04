@@ -1,7 +1,14 @@
-import { Providers } from '@/state/redux/provider'
+'use client'
+import { Providers } from '@/infra/state/redux/provider'
 import type { Metadata } from 'next'
 import { JetBrains_Mono } from 'next/font/google'
+import 'reflect-metadata'
+
+import setupApp from '../main/config/setup-app'
 import './globals.css'
+
+// Setup app config
+setupApp()
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'] })
 
