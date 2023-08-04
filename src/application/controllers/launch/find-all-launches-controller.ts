@@ -10,7 +10,7 @@ export class FindAllLaunchesController implements Controller {
     private readonly findLaunchesRepository: FindLaunchesRepository
   ) {}
 
-  async handle(): Promise<PaginatedLaunch[] | string> {
+  async handle(): Promise<PaginatedLaunch | any> {
     try {
       const launches = await this.findLaunchesRepository.findAll()
       return launches

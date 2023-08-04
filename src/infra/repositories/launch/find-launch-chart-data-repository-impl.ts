@@ -1,6 +1,6 @@
 import type { FindLaunchChartDataRepository } from '@/data/repositories/launch/find-launch-chart-data-repository'
 import { LaunchChartData } from '@/domain/models/launch-chart-data'
-import { fetchLaunches } from '@/infra/state/redux/slice/launch-slice'
+import { fetchChartData } from '@/infra/state/redux/slice/chart-data-slice'
 import { store } from '@/infra/state/redux/store/store'
 
 export class FindLaunchChartDataRepositoryImpl
@@ -11,7 +11,7 @@ export class FindLaunchChartDataRepositoryImpl
   }
   async findAll(): Promise<LaunchChartData[]> {
     const dispatch = store.dispatch
-    await dispatch(fetchLaunches())
+    await dispatch(fetchChartData())
     return store.getState().launchChartDataReducer.data!
   }
 }

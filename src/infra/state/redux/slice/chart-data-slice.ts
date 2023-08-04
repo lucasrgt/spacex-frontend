@@ -25,8 +25,8 @@ const initialState: LaunchChartDataState = {
   data: null
 }
 
-const launchSlice = createSlice({
-  name: 'launch',
+const launchChartDataSlice = createSlice({
+  name: 'chartData',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -47,4 +47,4 @@ const launchSlice = createSlice({
   }
 })
 
-export default launchSlice.reducer
+export default launchChartDataSlice.reducer

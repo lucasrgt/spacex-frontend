@@ -37,7 +37,7 @@ const YearLaunches = () => {
       const labels = Object.keys(years).sort()
       const rocketTypes = Object.keys(
         data.reduce(
-          (acc, launch) => {
+          (acc: any, launch: any) => {
             acc['Used ' + launch.rocket] = true
             acc['New ' + launch.rocket] = true
             return acc

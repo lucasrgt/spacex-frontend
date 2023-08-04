@@ -7,7 +7,7 @@ export class FindLaunchesRepositoryImpl implements FindLaunchesRepository {
   findById(id: string): Promise<PaginatedLaunch | null> {
     throw new Error('Method not implemented.')
   }
-  async findAll(): Promise<PaginatedLaunch[]> {
+  async findAll(): Promise<PaginatedLaunch> {
     const dispatch = store.dispatch
     await dispatch(fetchLaunches())
     return store.getState().launchReducer.data!
