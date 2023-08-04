@@ -72,7 +72,7 @@ const YearLaunches = () => {
       <Separator />
       <div className="w-full h-full lg:w-3/4 p-4 flex justify-center">
         {isLoading ? (
-          <div className="loading">Carregando...</div>
+          <div className="loading text-spaceblue-500">Carregando...</div>
         ) : (
           <BarChart className="h-full w-full" chartData={chartData} />
         )}
