@@ -11,15 +11,15 @@ const LaunchResults = () => {
   const [results, setResults] = useState({ successes: 0, failures: 0 })
 
   useEffect(() => {
-    const fetchResults = async () => {
+    const fetchSuccessAndFailures = async () => {
       const data = await getLaunchSuccessesAndFailures()
       setResults(data)
     }
 
-    fetchResults()
+    fetchSuccessAndFailures()
 
     const intervalId = setInterval(() => {
-      fetchResults()
+      fetchSuccessAndFailures()
     }, 60000)
 
     return () => clearInterval(intervalId)

@@ -27,13 +27,19 @@ const RocketLaunches = () => {
       rocketCount[rocketType] = (rocketCount[rocketType] || 0) + 1
     })
 
+    const rocketTypes = Object.keys(rocketCount)
+    const backgroundColor = rocketTypes.map((_, i) => {
+      const hue = (360 / rocketTypes.length) * i
+      return `hsl(${hue}, 70%, 70%)`
+    })
+
     setChartData({
-      labels: Object.keys(rocketCount),
+      labels: rocketTypes,
       datasets: [
         {
           label: ' Vôos',
           data: Object.values(rocketCount),
-          backgroundColor: ['#7AE7FF', '#8D7AFF', '#99F3FF']
+          backgroundColor
         }
       ],
       type: 'pie'
